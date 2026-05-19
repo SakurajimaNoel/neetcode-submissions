@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> um;
+        vector<vector<string>> ans;
+        for (string &s: strs){
+            vector<int> count(26,0);
+            for (char c : s){
+                count[c - 'a']++;
+            }
+
+            string key = "";
+            for(int i =0 ; i < 26; ++i){
+                key += ',' + count[i];
+            }
+            um[key].push_back(s);
+
+        }
+
+        for(const auto& p : um){
+            ans.push_back(p.second);
+        }
+
+        return ans;
+    }
+};
